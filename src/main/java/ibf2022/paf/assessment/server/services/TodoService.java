@@ -28,17 +28,20 @@ public class TodoService {
 
         Optional<User> optUser = userRepo.findUserByUsername(username);
 
+        User user = new User();
+
         if (optUser.isEmpty()) {
 
-            User user = new User();
             user.setUsername(username);
             userRepo.insertUser(user);
+        } 
+        else {
+
+            user = optUser.get();
         }
 
-        User user = optUser.get();
-        
-        for (Task t: listOfTasks)
+        for (Task t : listOfTasks) {
             taskRepo.insertTask(t, user);
-
+        }
     }
 }

@@ -24,7 +24,9 @@ public class TaskRepository {
 
         int inserted = jdbcTemplate.update(SQL_INSERT_TASK, task.getDescription(), task.getPriority(), task.getDueDate(), user.getUserId());
 
-        if (inserted <= 0)
+        if (inserted <= 0) 
+        {
             throw new TodoException("failed to insert task into database");
+        }
     }
 }

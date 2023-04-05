@@ -46,11 +46,12 @@ public class UserRepository {
 
         int inserted = jdbcTemplate.update(SQL_INSERT_USER, userId, user.getUsername(), user.getName());
 
-        if (inserted <= 0)
-            throw new TodoException("failed to insert user into database");
+        if (inserted <= 0) {
 
+            throw new TodoException("failed to insert user into database");
+        }
+        
         return userId;
     }
-
 
 }
